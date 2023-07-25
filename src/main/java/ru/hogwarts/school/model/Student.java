@@ -1,11 +1,14 @@
 package ru.hogwarts.school.model;
 
+import lombok.NoArgsConstructor;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.util.Objects;
 
 @Entity
+
 public class Student {
 
     @Id
@@ -16,14 +19,16 @@ public class Student {
 
     private int age;
 
-    public Student() {
 
-    }
 
     public Student(Long id, String name, int age) {
         this.id = id;
         this.name = name;
         this.age = age;
+    }
+
+    public Student() {
+
     }
 
     public Long getId() {

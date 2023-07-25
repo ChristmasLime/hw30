@@ -51,11 +51,11 @@ public class StudentController {
         return ResponseEntity.ok(service.getAllStud());
     }
 
-//    @GetMapping("age/{age}")
-//    public ResponseEntity<Collection<Student>> getStudentByAge(@PathVariable int age) {
-//        if (age > 0) {
-//            return ResponseEntity.ok(service.getStudByAge());
-//        }
-//        return ResponseEntity.ok(Collections.emptyList());
-//    }
+    @GetMapping("age/{age}")
+    public ResponseEntity<Collection<Student>> getStudentByAge(@PathVariable int age) {
+        if (age > 0) {
+            return ResponseEntity.ok(service.getStudByAge(age));
+        }
+        return ResponseEntity.ok(Collections.emptyList());
+    }
 }

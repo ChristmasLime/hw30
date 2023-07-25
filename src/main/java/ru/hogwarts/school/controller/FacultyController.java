@@ -52,11 +52,11 @@ public class FacultyController {
         return ResponseEntity.ok(service.getAllFacul());
     }
 
-//    @GetMapping("color/{color}")
-//    public ResponseEntity<Collection<Faculty>> getFacultiesByColor(@PathVariable String color) {
-//        if (color != null && !color.isBlank()) {
-//            return ResponseEntity.ok(service.getFaculByColor(color));
-//        }
-//        return ResponseEntity.ok(Collections.emptyList());
-//    }
+    @GetMapping("color/{color}")
+    public ResponseEntity<Collection<Faculty>> getFacultiesByColor(@PathVariable String color) {
+        if (color != null && !color.isBlank()) {
+            return ResponseEntity.ok(service.getFacultiesByColor(color));
+        }
+        return ResponseEntity.ok(Collections.emptyList());
+    }
 }

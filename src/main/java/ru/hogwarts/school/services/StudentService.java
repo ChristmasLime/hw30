@@ -1,7 +1,6 @@
 package ru.hogwarts.school.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import ru.hogwarts.school.model.Student;
 import ru.hogwarts.school.repository.StudentRepository;
@@ -40,8 +39,7 @@ public class StudentService {
         return studentRepository.findAll();
     }
 
-//    public Collection<Student> getStudByAge() {
-//        return studentRepository.findAll
-//                (Sort.by(Sort.Direction.DESC, "age"));
-//    }
+    public Collection<Student> getStudByAge(int age) {
+        return studentRepository.findByAge(age);
+    }
 }
