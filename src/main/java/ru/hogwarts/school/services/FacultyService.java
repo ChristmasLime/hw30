@@ -1,7 +1,9 @@
 package ru.hogwarts.school.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.hogwarts.school.model.Faculty;
+import ru.hogwarts.school.repository.FacultyRepository;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -10,40 +12,37 @@ import java.util.stream.Collectors;
 @Service
 public class FacultyService {
 
-    private final HashMap<Long, Faculty> faculties = new HashMap<>();
+@Autowired
+    private final FacultyRepository facultyRepository;
 
-    private long lastId = 0;
+    public FacultyService(FacultyRepository facultyRepository) {
+        this.facultyRepository = facultyRepository;
+    }
 
     public Faculty createFacul(Faculty faculty) {
-        faculty.setId(++lastId);
-        faculties.put(lastId, faculty);
-        return faculty;
+        return facultyRepository.save(faculty);
     }
 
     public Faculty findFacul(long id) {
-        return faculties.get(id);
+        return facultyRepository.findById(id).get();
     }
 
     public Faculty editFacul(Faculty faculty) {
-        if (faculties.containsKey(faculty.getId())) {
-            faculties.put(faculty.getId(), faculty);
-            return faculty;
-        }
-        return null;
+        return facultyRepository.save(faculty);
     }
 
-    public Faculty deleteFacul(long id) {
-        return faculties.remove(id);
+    public void deleteFacul(long id) {
+       facultyRepository.deleteById(id);
     }
 
     public Collection<Faculty> getAllFacul() {
-        return faculties.values();
+        return facultyRepository.findAll();
     }
 
-    public Collection<Faculty> getFaculByColor(String color) {
-        return faculties.values().stream()
-                .filter(faculty -> faculty.getColor().equalsIgnoreCase(color))
-                .collect(Collectors.toList());
-    }
+//    public Collection<Faculty> getFaculByColor(String color) {
+//        return faculties.values().stream()
+//                .filter(faculty -> faculty.getColor().equalsIgnoreCase(color))
+//                .collect(Collectors.toList());
+//    }
 }
 

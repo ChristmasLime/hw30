@@ -41,11 +41,9 @@ public class StudentController {
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<Student> deleteStudent(@PathVariable Long id) {
-        if (id == null) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(service.deleteStud(id));
+    public ResponseEntity deleteStudent(@PathVariable Long id) {
+        service.deleteStud(id);
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping
@@ -53,11 +51,11 @@ public class StudentController {
         return ResponseEntity.ok(service.getAllStud());
     }
 
-    @GetMapping("age/{age}")
-    public ResponseEntity<Collection<Student>> getStudentByAge(@PathVariable int age) {
-        if (age > 0) {
-            return ResponseEntity.ok(service.getStudByAge(age));
-        }
-        return ResponseEntity.ok(Collections.emptyList());
-    }
+//    @GetMapping("age/{age}")
+//    public ResponseEntity<Collection<Student>> getStudentByAge(@PathVariable int age) {
+//        if (age > 0) {
+//            return ResponseEntity.ok(service.getStudByAge());
+//        }
+//        return ResponseEntity.ok(Collections.emptyList());
+//    }
 }
