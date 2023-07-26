@@ -6,6 +6,7 @@ import ru.hogwarts.school.model.Student;
 import ru.hogwarts.school.repository.StudentRepository;
 
 import java.util.Collection;
+import java.util.NoSuchElementException;
 
 
 @Service
@@ -23,7 +24,8 @@ public class StudentService {
     }
 
     public Student findStud(long id) {
-        return studentRepository.findById(id).get();
+        return studentRepository.findById(id).orElseThrow(
+                () -> new NoSuchElementException("Студент с указанным id не найден"));
     }
 
     public Student editStud(Student student) {

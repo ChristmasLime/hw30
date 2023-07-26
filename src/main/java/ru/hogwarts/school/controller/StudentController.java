@@ -21,7 +21,10 @@ public class StudentController {
 
     @PostMapping
     public ResponseEntity<Student> createStudent(@RequestBody Student student) {
-        return ResponseEntity.ok(service.createStud(student));
+        if (student.getAge()>0) {
+            return ResponseEntity.ok(service.createStud(student));
+        }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 
     @GetMapping("{id}")
@@ -34,10 +37,10 @@ public class StudentController {
 
     @PutMapping()
     public ResponseEntity<Student> editStudent(@RequestBody Student student) {
-        if (student == null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        if (student.getAge()>0) {
+            return ResponseEntity.ok(service.editStud(student));
         }
-        return ResponseEntity.ok(service.editStud(student));
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 
     @DeleteMapping("{id}")
