@@ -24,6 +24,7 @@ public class StudentService {
     }
 
     public Student findStud(long id) {
+
         return studentRepository.findById(id).orElseThrow(
                 () -> new NoSuchElementException("Студент с указанным id не найден"));
     }

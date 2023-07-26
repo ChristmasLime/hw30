@@ -21,7 +21,7 @@ public class StudentController {
 
     @PostMapping
     public ResponseEntity<Student> createStudent(@RequestBody Student student) {
-        if (student.getAge()>0) {
+        if (student.getAge() > 0) {
             return ResponseEntity.ok(service.createStud(student));
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
@@ -37,7 +37,7 @@ public class StudentController {
 
     @PutMapping()
     public ResponseEntity<Student> editStudent(@RequestBody Student student) {
-        if (student.getAge()>0) {
+        if (student.getAge() > 0) {
             return ResponseEntity.ok(service.editStud(student));
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();

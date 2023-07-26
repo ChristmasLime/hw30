@@ -25,6 +25,7 @@ public class FacultyService {
     }
 
     public Faculty findFacul(long id) {
+
         return facultyRepository.findById(id).orElseThrow(
                 ()->new NoSuchElementException("Факультет с указанным id не найден"));
     }

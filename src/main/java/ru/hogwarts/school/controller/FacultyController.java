@@ -22,6 +22,7 @@ public class FacultyController {
     @PostMapping
     public ResponseEntity<Faculty> createFaculty(@RequestBody Faculty faculty) {
         return ResponseEntity.ok(service.createFacul(faculty));
+
     }
 
     @GetMapping("{id}")
